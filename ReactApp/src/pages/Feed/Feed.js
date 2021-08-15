@@ -119,19 +119,23 @@ class Feed extends Component {
     console.log(formData);
     formData.append('title', postData.title);
     formData.append('content', postData.content);
+    console.log('saurabh', postData.image);
     formData.append('image', postData.image);
     console.log(formData);
 
     let url = 'http://localhost:8080/feed/post';
     let method = 'POST';
+    
     if (this.state.editPost) {
+      console.log(this.state.editPost)
       url = 'http://localhost:8080/feed/post/' + this.state.editPost._id;
-      method = 'PUT'
+      console.log(url)
+      method = 'PUT';
     }
 
     fetch(url , {
       method : method ,
-      body : formData
+      body : formData,
     })
       .then(res => {
         if (res.status !== 200 && res.status !== 201) {
